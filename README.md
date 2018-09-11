@@ -54,3 +54,26 @@ Edge and Vertex class also need to be created or can use a matrix to represent t
 
 # Topological Sort
 ## Kahn's Algorithm
+1. Queue up all vertices with no 'in' edges (incoming edges)
+2. Pop off vertices from queue
+    a. remove vertex + out edges from graph
+    b. push vertex into sorted
+    c. examine destination vertices, push on to queue if no more indices
+ ### Thus 
+    - Vertex needs access to edges
+    - Graph class also needs access to edges to more easily and directly delete edges
+
+
+```ruby
+def topo_sort(graph)
+    sorted = []
+    top = new Queue()
+    
+    graph.vertices.each do |vertex|
+        if vertex.in_edges.empty?
+        top.enqueue(vertex)
+        end
+    end
+
+end
+```
