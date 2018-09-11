@@ -75,5 +75,32 @@ def topo_sort(graph)
         end
     end
 
+    until top.empty?
+    current = top.pop
+    sorted << current
+        current.out-edges.each |edge|
+            if edge.destination.in_edges.empty?
+                top.enqueue(edge.destination)
+            end
+            graph.delete_edge(edge)
+        end
+        graph.delete_vertex(current)
+    end
+    sorted
 end
 ```
+
+### time complexity of Kahn's as above
+- first iteration is O(|V|) 
+- until loop is O(|E|)
+- O (|V| + |E|) - depends on the density of edges
+
+* khan's algo is not 'deterministic'
+Modifciation - Coffman-Graham
+Modify DFS - to do this
+
+__Use Cases__
+- Task/Dependencies
+- Webpack creates a list of files and depenencies and create an order by topological sort
+- Schedule tasks given scheduling restrictions
+- minimal spanning tree
