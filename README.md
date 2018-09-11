@@ -70,7 +70,7 @@ def topo_sort(graph)
     top = new Queue()
     
     graph.vertices.each do |vertex|
-        if vertex.in_edges.empty?
+        if vertex.in_edges.empty? #excluding current incoming
         top.enqueue(vertex)
         end
     end
@@ -82,7 +82,7 @@ def topo_sort(graph)
             if edge.destination.in_edges.empty?
                 top.enqueue(edge.destination)
             end
-            graph.delete_edge(edge)
+            graph.delete_edge(edge) #this is wrong, needs to be moved up
         end
         graph.delete_vertex(current)
     end
